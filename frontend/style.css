@@ -1,0 +1,278 @@
+/* ===== DocuMind — "Reading Lamp" design system ===== */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #0e1614;
+  --bg-grain: radial-gradient(rgba(231, 169, 76, 0.035) 1px, transparent 1px);
+  --surface: #16211f;
+  --surface-2: #1c2926;
+  --border: #2a3a36;
+  --accent: #e7a94c;
+  --accent-soft: rgba(231, 169, 76, 0.14);
+  --scan: #6fe7c5;
+  --text: #f3ecdd;
+  --text-muted: #93a29c;
+  --danger: #e2725b;
+
+  --font-display: 'Fraunces', serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg);
+  background-image: var(--bg-grain);
+  background-size: 18px 18px;
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+/* ---------- Signature: scanning document icon ---------- */
+
+.doc-signature {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1.25rem;
+}
+
+.doc-signature svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.doc-signature .page {
+  fill: var(--surface-2);
+  stroke: var(--border);
+  stroke-width: 1.5;
+}
+
+.doc-signature .page.front {
+  fill: #1f2d2a;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+}
+
+.doc-signature .line {
+  stroke: var(--text-muted);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.doc-signature .scan-line {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--scan), transparent);
+  box-shadow: 0 0 8px 1px var(--scan);
+  animation: scan-sweep 2.6s ease-in-out infinite;
+}
+
+@keyframes scan-sweep {
+  0%   { top: 14%; opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { top: 82%; opacity: 1; }
+  60%  { opacity: 0; }
+  100% { top: 82%; opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .doc-signature .scan-line { animation: none; opacity: 0.6; top: 50%; }
+}
+
+/* ---------- Login page ---------- */
+
+.login-main {
+  max-width: 380px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+#login-section {
+  width: 100%;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+#login-section h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.9rem;
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+#login-section p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0 0 1.75rem;
+  line-height: 1.5;
+}
+
+/* ---------- Shared form elements ---------- */
+
+input[type="text"],
+input[type="password"],
+input[type="file"] {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  margin-bottom: 0.75rem;
+  transition: border-color 0.15s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+button {
+  padding: 0.7rem 1.3rem;
+  border: none;
+  border-radius: 4px;
+  background: var(--accent);
+  color: #1a1410;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background: #f0b85e;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--scan);
+  outline-offset: 2px;
+}
+
+#loginBtn {
+  width: 100%;
+}
+
+#loginStatus {
+  margin-top: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--danger);
+  min-height: 1em;
+}
+
+/* ---------- Main app ---------- */
+
+header {
+  padding: 2.5rem 1.5rem 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.header-row {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+}
+
+.header-row h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2rem;
+  margin: 0;
+}
+
+header p {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  max-width: 700px;
+  margin: 0.75rem auto 0;
+}
+
+#logoutBtn {
+  position: absolute;
+  right: 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.8rem;
+  padding: 0.45rem 0.9rem;
+}
+
+#logoutBtn:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+main {
+  max-width: 700px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.75rem;
+}
+
+section h2 {
+  margin: 0 0 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+#uploadStatus,
+#summaryOutput,
+#answerOutput {
+  margin-top: 0.75rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+#summaryOutput {
+  font-family: var(--font-body);
+  color: var(--text);
+}

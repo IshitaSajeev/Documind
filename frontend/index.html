@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DocuMind — Document Summarizer & Q&A</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-row">
+      <h1>📚 DocuMind</h1>
+      <button id="logoutBtn">Log Out</button>
+    </div>
+    <p>Upload a document, get an AI summary, and ask it questions.</p>
+  </header>
+
+  <main>
+    <section id="upload-section">
+      <h2>01 — Upload a Document</h2>
+      <input type="file" id="fileInput" accept=".pdf,.docx,.txt" />
+      <button id="uploadBtn">Upload</button>
+      <p id="uploadStatus"></p>
+    </section>
+
+    <section id="summary-section">
+      <h2>02 — Summary</h2>
+      <p id="summaryOutput">No document processed yet.</p>
+    </section>
+
+    <section id="qa-section">
+      <h2>03 — Ask a Question</h2>
+      <input type="text" id="questionInput" placeholder="Ask something about the document..." />
+      <button id="askBtn">Ask</button>
+      <p id="answerOutput"></p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
